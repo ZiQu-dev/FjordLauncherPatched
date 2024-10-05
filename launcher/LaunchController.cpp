@@ -143,12 +143,17 @@ void LaunchController::login()
         return;
     }
 
-    if (m_accountToUse->usesCustomApiServers()) {
-        MinecraftInstancePtr inst = std::dynamic_pointer_cast<MinecraftInstance>(m_instance);
+    MinecraftInstancePtr inst = std::dynamic_pointer_cast<MinecraftInstance>(m_instance);
+    if (m_accountToUse->usesCustomApiServers() && !inst->shouldApplyOnlineFixes()) {
+        bool authlibInjectorInstalled = false;
+        const auto& agents = inst->getPackProfile()->getProfile()->getAgents();
+        for (const auto& agent : agents) {
+            if (agent->library()->artifactPrefix() == "moe.yushi:authlibinjector") {
+                authlibInjectorInstalled = true;
+            }
+        }
 
-        const auto& authlibInjectorVersion = inst->getPackProfile()->getComponentVersion("moe.yushi.authlibinjector");
-
-        if (authlibInjectorVersion == "") {
+        if (!authlibInjectorInstalled) {
             // Account uses custom API servers, but authlib-injector is missing
 
             int globalMissingBehavior = APPLICATION->settings()->get("MissingAuthlibInjectorBehavior").toInt();
@@ -405,7 +410,7 @@ void LaunchController::launchInstance()
         online_mode = "online";
 
         // Prepend Server Status
-        QStringList servers = { "authserver.mojang.com", "session.minecraft.net", "textures.minecraft.net", "api.mojang.com" };
+        QStringList servers = { "login.live.com", "session.minecraft.net", "textures.minecraft.net", "api.mojang.com" };
         QString resolved_servers = "";
         QHostInfo host_info;
 

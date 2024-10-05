@@ -95,6 +95,10 @@ set(CORE_SOURCES
     MMCTime.cpp
 
     MTPixmapCache.h
+
+    # Manifest.mf parser
+    Manifest.h
+    Manifest.cpp
 )
 if (UNIX AND NOT CYGWIN AND NOT APPLE)
 set(CORE_SOURCES
@@ -855,6 +859,8 @@ SET(LAUNCHER_SOURCES
     ui/themes/DarkTheme.h
     ui/themes/ITheme.cpp
     ui/themes/ITheme.h
+    ui/themes/HintOverrideProxyStyle.cpp
+    ui/themes/HintOverrideProxyStyle.h
     ui/themes/SystemTheme.cpp
     ui/themes/SystemTheme.h
     ui/themes/IconTheme.cpp

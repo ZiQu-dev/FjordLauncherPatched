@@ -59,6 +59,7 @@ Config::Config()
     // Version information
     VERSION_MAJOR = @Launcher_VERSION_MAJOR@;
     VERSION_MINOR = @Launcher_VERSION_MINOR@;
+    VERSION_PATCH = @Launcher_VERSION_PATCH@;
 
     BUILD_PLATFORM = "@Launcher_BUILD_PLATFORM@";
     BUILD_ARTIFACT = "@Launcher_BUILD_ARTIFACT@";
@@ -117,7 +118,6 @@ Config::Config()
     IMGUR_CLIENT_ID = "@Launcher_IMGUR_CLIENT_ID@";
     MSA_CLIENT_ID = "@Launcher_MSA_CLIENT_ID@";
     FLAME_API_KEY = "@Launcher_CURSEFORGE_API_KEY@";
-    FLAME_API_KEY_API_URL = "@Launcher_CURSEFORGE_API_KEY_API_URL@";
     META_URL = "@Launcher_META_URL@";
 
     GLFW_LIBRARY_NAME = "@Launcher_GLFW_LIBRARY_NAME@";
@@ -132,7 +132,7 @@ Config::Config()
 
 QString Config::versionString() const
 {
-    return QString("%1.%2").arg(VERSION_MAJOR).arg(VERSION_MINOR);
+    return QString("%1.%2.%3").arg(VERSION_MAJOR).arg(VERSION_MINOR).arg(VERSION_PATCH);
 }
 
 QString Config::printableVersionString() const

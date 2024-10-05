@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 /*
  *  Prism Launcher - Minecraft Launcher
- *  Copyright (C) 2023 Rachel Powers <508861+Ryex@users.noreply.github.com>
+ *  Copyright (C) 2024 TheKodeToad <TheKodeToad@proton.me>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -14,26 +14,21 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *
  */
 
 #pragma once
 
-#include "net/HeaderProxy.h"
+#include <QProxyStyle>
+#include <iostream>
 
-namespace Net {
-
-class StaticHeaderProxy : public HeaderProxy {
+/// Used to override platform-specific behaviours which the launcher does work well with.
+class HintOverrideProxyStyle : public QProxyStyle {
+    Q_OBJECT
    public:
-    StaticHeaderProxy(QList<HeaderPair> hdrs = {}) : HeaderProxy(), m_hdrs(hdrs) {};
-    virtual ~StaticHeaderProxy() = default;
+    HintOverrideProxyStyle(QStyle* style) : QProxyStyle(style) {}
 
-   public:
-    virtual QList<HeaderPair> headers(const QNetworkRequest&) const override { return m_hdrs; };
-    void setHeaders(QList<HeaderPair> hdrs) { m_hdrs = hdrs; };
-
-   private:
-    QList<HeaderPair> m_hdrs;
+    int styleHint(QStyle::StyleHint hint,
+                  const QStyleOption* option = nullptr,
+                  const QWidget* widget = nullptr,
+                  QStyleHintReturn* returnData = nullptr) const override;
 };
-
-}  // namespace Net

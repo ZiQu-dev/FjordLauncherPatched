@@ -17,6 +17,7 @@
  */
 
 #include "ModrinthPackIndex.h"
+#include "FileSystem.h"
 #include "ModrinthAPI.h"
 
 #include "Json.h"
@@ -135,8 +136,9 @@ void Modrinth::loadIndexedPackVersions(ModPlatform::IndexedPack& pack, QJsonArra
     pack.versionsLoaded = true;
 }
 
-auto Modrinth::loadIndexedPackVersion(QJsonObject& obj, QString preferred_hash_type, QString preferred_file_name)
-    -> ModPlatform::IndexedVersion
+auto Modrinth::loadIndexedPackVersion(QJsonObject& obj,
+                                      QString preferred_hash_type,
+                                      QString preferred_file_name) -> ModPlatform::IndexedVersion
 {
     ModPlatform::IndexedVersion file;
 
@@ -226,6 +228,7 @@ auto Modrinth::loadIndexedPackVersion(QJsonObject& obj, QString preferred_hash_t
     if (parent.contains("url")) {
         file.downloadUrl = Json::requireString(parent, "url");
         file.fileName = Json::requireString(parent, "filename");
+        file.fileName = FS::RemoveInvalidPathChars(file.fileName);
         file.is_preferred = Json::requireBoolean(parent, "primary") || (files.count() == 1);
         auto hash_list = Json::requireObject(parent, "hashes");
 
@@ -249,8 +252,9 @@ auto Modrinth::loadIndexedPackVersion(QJsonObject& obj, QString preferred_hash_t
     return {};
 }
 
-auto Modrinth::loadDependencyVersions([[maybe_unused]] const ModPlatform::Dependency& m, QJsonArray& arr, const BaseInstance* inst)
-    -> ModPlatform::IndexedVersion
+auto Modrinth::loadDependencyVersions([[maybe_unused]] const ModPlatform::Dependency& m,
+                                      QJsonArray& arr,
+                                      const BaseInstance* inst) -> ModPlatform::IndexedVersion
 {
     auto profile = (dynamic_cast<const MinecraftInstance*>(inst))->getPackProfile();
     QString mcVersion = profile->getComponentVersion("net.minecraft");
