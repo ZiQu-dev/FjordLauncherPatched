@@ -27,7 +27,7 @@ You **will not** ask in #fjord-launcher in their [Matrix space](https://matrix.t
 
 ## Windows
 
-Run exe with administrator and extraxt software whenever you want to. After that run **fjordlauncher.exe**.
+Run exe with administrator and extract software whenever you want to. After that run **fjordlauncher.exe**.
 
 You can also use the "*.7z release*" to unzip it without admin rights if you know how to use an archiver.
 
@@ -37,11 +37,11 @@ Just run executable. Should be running without errors. However if you ran into p
 
 ## MacOS
 
-I tried compiling it for Apple Silicon, but basiaclly my C++ compiler on my M1 Macbook said ___f*ck you___ so there's no MacOS version :c
+I tried compiling it for Apple Silicon, but basically my C++ compiler on my M1 Macbook said ___f*ck you___ so there's no MacOS version :c
 
 However I wish you good luck and having fun trying to compile it yourself on this _sh*thole_ of the platform.
 
-_Trust me I also thought it was 20 minut adventure which was in and out._
+_Trust me I also thought it was 20 minute adventure which was in and out._
 
 # Building
 
