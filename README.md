@@ -37,11 +37,15 @@ Just run executable. Should be running without errors. However if you ran into p
 
 ## MacOS
 
-I tried compiling it for Apple Silicon, but basically my C++ compiler on my M1 Macbook said ___f*ck you___ so there's no MacOS version :c
+I GAMBLED AND **WON!**
+I DID IT, I F*CKING DID IT!
+It's gonna be available soon™️
 
-However I wish you good luck and having fun trying to compile it yourself on this _sh*thole_ of the platform.
+~~I tried compiling it for Apple Silicon, but basically my C++ compiler on my M1 Macbook said ___f*ck you___ so there's no MacOS version :c~~
 
-_Trust me I also thought it was 20 minute adventure which was in and out._
+~~However I wish you good luck and having fun trying to compile it yourself on this _sh*thole_ of the platform.~~
+
+~~_Trust me I also thought it was 20 minute adventure which was in and out._~~
 
 # Building
 
