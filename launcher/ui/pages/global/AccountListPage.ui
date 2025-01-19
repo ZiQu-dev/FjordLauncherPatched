@@ -90,7 +90,7 @@
   </action>
   <action name="actionAddAuthlibInjector">
    <property name="text">
-    <string>Add authlib-&amp;injector</string>
+    <string>Add &amp;Custom</string>
    </property>
   </action>
   <action name="actionAddOffline">
